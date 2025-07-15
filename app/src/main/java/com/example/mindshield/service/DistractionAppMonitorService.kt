@@ -295,57 +295,53 @@ class DistractionAppMonitorService : Service() {
                 }
                 
                 if (foregroundApp != null && distractionApps.contains(foregroundApp)) {
-                    // Special case: Instagram - show only notification, no overlay
-                    if (foregroundApp == "com.instagram.android") {
-                        showInstagramNotification()
-                        // Remove any overlay if present
-                        if (distractionBlurOverlayActive) removeDistractionBlurOverlay()
-                        lastNotifiedPackage = foregroundApp
-                    } else if (!isContentAwareApp(foregroundApp)) {
-                        // 5-minute grace period after notification dismissal
-                        val lastDismissed = lastDismissalTimestamps[foregroundApp] ?: 0L
-                        val now = System.currentTimeMillis()
-                        if (now - lastDismissed >= 5 * 60 * 1000L) {
-                            if (lastNotifiedPackage != foregroundApp) {
-                                showImmediateDistractionNotification(foregroundApp)
-                                lastNotifiedPackage = foregroundApp
+                    if (foregroundApp == "com.google.android.youtube") {
+                        // --- YouTube-specific overlay logic (timer block, AI/content-aware required) ---
+                        youtubeLastForegroundTime = System.currentTimeMillis()
+                        youtubeOverlayShouldBeActive = true
+                        if (shouldShowAlert(foregroundApp)) {
+                            if (!youtubeBlurOverlayActive && youtubeBlurOverlayRemaining > 0L) {
+                                showYouTubeBlurOverlay(youtubeBlurOverlayRemaining)
+                            } else if (youtubeBlurOverlayPaused) {
+                                resumeYouTubeBlurOverlayTimer()
+                            }
+                            if (youtubeBlurOverlayRemaining <= 0L) {
+                                youtubeOverlayShouldBeActive = false;
+                                youtubeLastForegroundTime = 0L;
+                                youtubeLeftTimestamp = 0L;
+                            }
+                        } else {
+                            if (youtubeBlurOverlayActive) {
+                                removeYouTubeBlurOverlay();
+                                youtubeBlurOverlayRemaining = 120_000L;
+                                youtubeOverlayShouldBeActive = false;
+                                youtubeLastForegroundTime = 0L;
+                                youtubeLeftTimestamp = 0L;
                             }
                         }
-                        // Show full-screen blur overlay for other non-content-aware apps
-                        if (!distractionBlurOverlayActive) {
-                            showDistractionBlurOverlay(foregroundApp)
-                        } else if (distractionBlurOverlayPaused) {
-                            resumeDistractionBlurOverlayTimer()
-                        }
-                    }
-                    // Remove overlay and pause timer if user leaves the app (within 2 seconds)
-                    if (distractionBlurOverlayActive && foregroundApp != distractionBlurOverlayTargetPackage) {
-                        pauseDistractionBlurOverlayTimer()
-                        handler.postDelayed({
-                            removeDistractionBlurOverlay()
-                        }, 2000) // Remove overlay within 2 seconds
-                    }
-                    // --- YouTube-specific overlay logic ---
-                    if (foregroundApp == "com.google.android.youtube") {
-                        // Do NOT show notification or overlay here; only show after AI/content-aware result is 'distracting'
-                        if (!youtubeBlurOverlayActive && youtubeBlurOverlayRemaining > 0L) {
-                            showYouTubeBlurOverlay(youtubeBlurOverlayRemaining)
-                        } else if (youtubeBlurOverlayPaused) {
-                            resumeYouTubeBlurOverlayTimer()
-                        }
                     } else {
-                        if (youtubeBlurOverlayActive) {
-                            pauseYouTubeBlurOverlayTimer()
-                            removeYouTubeBlurOverlay()
+                        // --- Non-YouTube distracting app: show simple overlay notification ---
+                        // Remove any timer/blur overlays for non-YouTube apps
+                        if (youtubeBlurOverlayActive) removeYouTubeBlurOverlay();
+                        if (distractionBlurOverlayActive) removeDistractionBlurOverlay();
+                        // Show custom overlay notification if not already shown
+                        if (overlayNotificationView == null || lastNotifiedPackage != foregroundApp) {
+                            val appName = DistractionAppRepository.getAppName(this@DistractionAppMonitorService, foregroundApp)
+                            val settingsDataStore = SettingsDataStore(applicationContext)
+                            CoroutineScope(Dispatchers.Main).launch {
+                                val name = withContext(Dispatchers.IO) {
+                                    settingsDataStore.userName.firstOrNull() ?: "there"
+                                }
+                                showSimpleTomatoOverlayNotification(appName, name, foregroundApp)
+                            }
+                            lastNotifiedPackage = foregroundApp
                         }
                     }
                 } else {
-                    if (overlayView != null) {
-                        removeOverlayAlert()
-                    }
-                    if (searchAlertView != null) {
-                        removeSearchAlert()
-                    }
+                    // Not a distracting app: remove all overlays
+                    if (youtubeBlurOverlayActive) removeYouTubeBlurOverlay();
+                    if (distractionBlurOverlayActive) removeDistractionBlurOverlay();
+                    if (overlayNotificationView != null) removeCustomOverlayNotification();
                 }
                 lastPackage = foregroundApp
                 // --- Overlay/timer pause/resume logic ---
@@ -366,15 +362,40 @@ class DistractionAppMonitorService : Service() {
                 lastPackage = foregroundApp
                 // --- YouTube-specific overlay logic ---
                 if (foregroundApp == "com.google.android.youtube") {
+                    youtubeLastForegroundTime = System.currentTimeMillis()
+                    youtubeOverlayShouldBeActive = true
+                    // If overlay is not active and timer is not finished, always show it
                     if (!youtubeBlurOverlayActive && youtubeBlurOverlayRemaining > 0L) {
                         showYouTubeBlurOverlay(youtubeBlurOverlayRemaining)
                     } else if (youtubeBlurOverlayPaused) {
                         resumeYouTubeBlurOverlayTimer()
                     }
+                    // If overlay finished, reset state
+                    if (youtubeBlurOverlayRemaining <= 0L) {
+                        youtubeOverlayShouldBeActive = false;
+                        youtubeLastForegroundTime = 0L;
+                        youtubeLeftTimestamp = 0L;
+                    }
                 } else {
-                    if (youtubeBlurOverlayActive) {
-                        pauseYouTubeBlurOverlayTimer()
-                        removeYouTubeBlurOverlay()
+                    // User left YouTube
+                    if (youtubeOverlayShouldBeActive) {
+                        if (youtubeLeftTimestamp == 0L) {
+                            youtubeLeftTimestamp = System.currentTimeMillis();
+                        }
+                        // Only remove overlay if user has left YouTube for at least 2 seconds
+                        if (System.currentTimeMillis() - youtubeLeftTimestamp >= 2000L) {
+                            pauseYouTubeBlurOverlayTimer();
+                            removeYouTubeBlurOverlay();
+                            // If user returns within 20 seconds, resume timer; else reset
+                            if (System.currentTimeMillis() - youtubeLastForegroundTime > 20000L) {
+                                youtubeBlurOverlayRemaining = 120_000L;
+                            }
+                            youtubeOverlayShouldBeActive = false;
+                            youtubeLastForegroundTime = 0L;
+                            youtubeLeftTimestamp = 0L;
+                        }
+                    } else {
+                        youtubeLeftTimestamp = 0L;
                     }
                 }
             } catch (e: Exception) {
@@ -1250,12 +1271,17 @@ class DistractionAppMonitorService : Service() {
         removeDistractionBlurOverlay()
     }
 
+    // --- YouTube overlay session state ---
     private var youtubeBlurOverlayActive = false
     private var youtubeBlurOverlayPaused = false
     private var youtubeBlurOverlayRemaining: Long = 120_000L
     private var youtubeBlurOverlayStartTime: Long = 0L
     private var youtubeBlurOverlayView: View? = null
     private var youtubeBlurOverlayTimer: CountDownTimer? = null
+    private var youtubeLastLeftTime: Long = 0L
+    private var youtubeLastForegroundTime: Long = 0L
+    private var youtubeLeftTimestamp: Long = 0L
+    private var youtubeOverlayShouldBeActive: Boolean = false
 
     private fun showYouTubeBlurOverlay(remaining: Long = 120_000L) {
         removeYouTubeBlurOverlay()
@@ -1324,5 +1350,39 @@ class DistractionAppMonitorService : Service() {
             showYouTubeBlurOverlay(youtubeBlurOverlayRemaining)
             youtubeBlurOverlayPaused = false
         }
+    }
+
+    private fun showSimpleTomatoOverlayNotification(appName: String, userName: String, packageName: String) {
+        if (!Settings.canDrawOverlays(this)) return
+        removeCustomOverlayNotification() // Remove any existing
+        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        overlayNotificationView = inflater.inflate(R.layout.overlay_alert, null)
+        val title = overlayNotificationView!!.findViewById<TextView>(R.id.overlay_title)
+        val message = overlayNotificationView!!.findViewById<TextView>(R.id.overlay_message)
+        val dismiss = overlayNotificationView!!.findViewById<Button>(R.id.overlay_dismiss)
+        val root = overlayNotificationView!!.findViewById<View>(R.id.overlay_root)
+        title.text = "Distraction Alert!"
+        message.text = "Hey $userName, you are using $appName distracting app."
+        // Set light tomato color background
+        root.setBackgroundColor(Color.parseColor("#FF6347")) // Tomato
+        dismiss.text = "Dismiss"
+        dismiss.setOnClickListener {
+            removeCustomOverlayNotification()
+        }
+        val params = WindowManager.LayoutParams(
+            WindowManager.LayoutParams.WRAP_CONTENT,
+            WindowManager.LayoutParams.WRAP_CONTENT,
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+            else
+                WindowManager.LayoutParams.TYPE_PHONE,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or
+                    WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
+            android.graphics.PixelFormat.TRANSLUCENT
+        )
+        params.gravity = android.view.Gravity.CENTER
+        val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        wm.addView(overlayNotificationView, params)
     }
 } 
