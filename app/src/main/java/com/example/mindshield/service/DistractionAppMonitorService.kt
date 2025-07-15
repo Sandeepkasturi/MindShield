@@ -362,13 +362,18 @@ class DistractionAppMonitorService : Service() {
                 lastPackage = foregroundApp
                 // --- YouTube-specific overlay logic ---
                 if (foregroundApp == "com.google.android.youtube") {
-                    youtubeLastForegroundTime = System.currentTimeMillis()
-                    youtubeOverlayShouldBeActive = true
                     // If overlay is not active and timer is not finished, always show it
                     if (!youtubeBlurOverlayActive && youtubeBlurOverlayRemaining > 0L) {
                         showYouTubeBlurOverlay(youtubeBlurOverlayRemaining)
+                        youtubeOverlayShouldBeActive = true
+                        youtubeLastForegroundTime = System.currentTimeMillis()
+                        youtubeLeftTimestamp = 0L
                     } else if (youtubeBlurOverlayPaused) {
+                        // Never pause the timer while on YouTube
                         resumeYouTubeBlurOverlayTimer()
+                        youtubeOverlayShouldBeActive = true
+                        youtubeLastForegroundTime = System.currentTimeMillis()
+                        youtubeLeftTimestamp = 0L
                     }
                     // If overlay finished, reset state
                     if (youtubeBlurOverlayRemaining <= 0L) {
@@ -384,7 +389,6 @@ class DistractionAppMonitorService : Service() {
                         }
                         // Only remove overlay if user has left YouTube for at least 2 seconds
                         if (System.currentTimeMillis() - youtubeLeftTimestamp >= 2000L) {
-                            pauseYouTubeBlurOverlayTimer();
                             removeYouTubeBlurOverlay();
                             // If user returns within 20 seconds, resume timer; else reset
                             if (System.currentTimeMillis() - youtubeLastForegroundTime > 20000L) {
