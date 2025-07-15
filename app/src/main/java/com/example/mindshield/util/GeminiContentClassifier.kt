@@ -29,7 +29,7 @@ interface GeminiApiService {
 @Singleton
 class GeminiContentClassifier @Inject constructor() {
     private val baseUrl = "https://generativelanguage.googleapis.com/"
-    private val apiKey = "AIzaSyCf-d1RX2oITs4ypofPpP8gW_ga8KujWAw"
+    private val apiKey = "YOUR_API_KEY"
 
     private val api: GeminiApiService by lazy {
         Retrofit.Builder()
