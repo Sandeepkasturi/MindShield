@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/blur_overlay_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <!-- Background view for blur effect -->
+    <View
+        android:id="@+id/blur_background_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent" />
+
+    <!-- Foreground: message and timer -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@android:color/transparent">
+
+        <TextView
+            android:id="@+id/blur_overlay_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Take a Break!\nYou are using Instagram for a while. Consider taking a break."
+            android:textSize="22sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/blur_overlay_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2:00"
+            android:textSize="64sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:gravity="center" />
+    </LinearLayout>
+</FrameLayout> 

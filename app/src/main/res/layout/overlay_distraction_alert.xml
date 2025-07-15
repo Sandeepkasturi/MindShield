@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/alert_background"
+    android:padding="20dp"
+    android:layout_margin="16dp">
+
+    <TextView
+        android:id="@+id/tvAlertTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Distraction Alert!"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/error"
+        android:gravity="center"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:id="@+id/tvAlertMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You've been using this app for too long"
+        android:textSize="16sp"
+        android:textColor="@color/text_primary"
+        android:gravity="center"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvAlertSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Time to take a break and focus on what matters!"
+        android:textSize="14sp"
+        android:textColor="@color/text_secondary"
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnDismiss"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Dismiss"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/secondary" />
+
+        <Button
+            android:id="@+id/btnTakeBreak"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Take Break"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/primary" />
+
+    </LinearLayout>
+
+</LinearLayout> 
