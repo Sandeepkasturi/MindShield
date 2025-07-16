@@ -7,21 +7,32 @@ import android.content.Context
 import com.example.mindshield.data.model.AppUsage
 import com.example.mindshield.data.model.DistractionEvent
 import com.example.mindshield.data.model.AppInfoEntity
+import com.example.mindshield.data.model.AppTimer
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(
-    entities = [AppUsage::class, DistractionEvent::class, AppInfoEntity::class],
-    version = 2, // Incremented version from 1 to 2
+    entities = [AppInfoEntity::class],
+    version = 3, // Incremented version from 2 to 3
     exportSchema = false
 )
 abstract class MindShieldDatabase : RoomDatabase() {
     
-    abstract fun appUsageDao(): AppUsageDao
-    abstract fun distractionEventDao(): DistractionEventDao
+    // abstract fun appUsageDao(): AppUsageDao
+    // abstract fun distractionEventDao(): DistractionEventDao
     abstract fun appInfoDao(): AppInfoDao
+    // abstract fun appTimerDao(): AppTimerDao
     
     companion object {
         @Volatile
         private var INSTANCE: MindShieldDatabase? = null
+
+        // Migration from version 2 to 3: add currentUsageSeconds column
+        val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE app_timers ADD COLUMN currentUsageSeconds INTEGER NOT NULL DEFAULT 0")
+            }
+        }
         
         fun getDatabase(context: Context): MindShieldDatabase {
             return INSTANCE ?: synchronized(this) {
@@ -30,7 +41,7 @@ abstract class MindShieldDatabase : RoomDatabase() {
                     MindShieldDatabase::class.java,
                     "mindshield_database"
                 )
-                .fallbackToDestructiveMigration() // Allow destructive migration for dev
+                .addMigrations(MIGRATION_2_3)
                 .build()
                 INSTANCE = instance
                 instance

@@ -39,26 +39,27 @@ class AnalyticsViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(loading = true)
             val now = System.currentTimeMillis()
+            val startOfDay = getStartOfDay()
             val weekAgo = now - (7 * 24 * 60 * 60 * 1000)
-            val dayAgo = now - (24 * 60 * 60 * 1000)
 
+            val dailyUsage: List<AppUsage> = appUsageRepository.getAppUsageForPeriod(startOfDay, now)
             val weeklyUsage: List<AppUsage> = appUsageRepository.getAppUsageForPeriod(weekAgo, now)
-            val dailyUsage: List<AppUsage> = appUsageRepository.getAppUsageForPeriod(dayAgo, now)
+            val dailyDistractions = distractionEventRepository.getDistractionEventsForPeriod(startOfDay, now)
             val weeklyDistractions = distractionEventRepository.getDistractionEventsForPeriod(weekAgo, now)
 
-            val totalUsageMinutes = weeklyUsage.sumOf { usage -> usage.duration }
-            val totalDistractions = weeklyDistractions.size
+            val totalUsageMinutes = dailyUsage.sumOf { usage -> usage.duration }
+            val totalDistractions = dailyDistractions.size
 
             // Distraction time: sum durations for apps marked as distracting
-            val distractionPackages = weeklyUsage.filter { it.isDistracting }.map { it.packageName }.toSet()
-            val distractionUsageMinutes = weeklyUsage.filter { distractionPackages.contains(it.packageName) }.sumOf { it.duration }
+            val distractionPackages = dailyUsage.filter { it.isDistracting }.map { it.packageName }.toSet()
+            val distractionUsageMinutes = dailyUsage.filter { distractionPackages.contains(it.packageName) }.sumOf { it.duration }
 
             val focusScore = calculateFocusScore(totalUsageMinutes, totalDistractions)
-            val averageSessionMinutes = calculateAverageSession(weeklyUsage)
+            val averageSessionMinutes = calculateAverageSession(dailyUsage)
 
-            val topDistractingApps = getTopDistractingApps(weeklyUsage, weeklyDistractions)
+            val topDistractingApps = getTopDistractingApps(dailyUsage, dailyDistractions)
             val weeklyData = getWeeklyData(weekAgo, now)
-            val categoryBreakdown = getCategoryBreakdown(weeklyUsage, weeklyDistractions)
+            val categoryBreakdown = getCategoryBreakdown(dailyUsage, dailyDistractions)
 
             Log.d("AnalyticsViewModel", "Analytics loaded - Total: ${totalUsageMinutes}m, Distractions: ${totalDistractions}, Focus Score: ${focusScore}%")
 
@@ -154,9 +155,19 @@ class AnalyticsViewModel @Inject constructor(
                 name = categoryName,
                 appCount = categoryApps.size,
                 totalUsageMinutes = categoryApps.sumOf { app: AppUsage -> app.duration },
-                distractionCount = categoryDistractions.size
+                distractionCount = categoryDistractions.size,
+                appNames = categoryApps.map { it.appName }
             )
         }.filter { category: CategoryData -> category.appCount > 0 }.sortedByDescending { category: CategoryData -> category.totalUsageMinutes }
+    }
+
+    private fun getStartOfDay(): Long {
+        val calendar = java.util.Calendar.getInstance()
+        calendar.set(java.util.Calendar.HOUR_OF_DAY, 0)
+        calendar.set(java.util.Calendar.MINUTE, 0)
+        calendar.set(java.util.Calendar.SECOND, 0)
+        calendar.set(java.util.Calendar.MILLISECOND, 0)
+        return calendar.timeInMillis
     }
 
     fun refreshAnalytics() {
@@ -194,5 +205,6 @@ data class CategoryData(
     val name: String,
     val appCount: Int,
     val totalUsageMinutes: Long,
-    val distractionCount: Int
+    val distractionCount: Int,
+    val appNames: List<String> = emptyList()
 ) 

@@ -33,6 +33,8 @@ class ContentAnalyzerReceiver : BroadcastReceiver() {
                     putExtra(EXTRA_CLASSIFICATION, classification.classification)
                     putExtra(EXTRA_CONFIDENCE, classification.confidence)
                     putExtra(EXTRA_ACTION, action.name)
+                    // Make intent explicit to avoid lint warning
+                    setPackage(context.packageName)
                 }
                 context.sendBroadcast(resultIntent)
             } catch (e: Exception) {

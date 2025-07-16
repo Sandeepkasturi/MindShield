@@ -48,10 +48,10 @@
             android:excludeFromRecents="true"
             android:noHistory="true" />
 
-        <!-- Accessibility Service for monitoring -->
+        <!-- Distraction Accessibility Service (General) -->
         <service
             android:name=".service.DistractionAccessibilityService"
-            android:exported="false"
+            android:exported="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
@@ -61,10 +61,10 @@
                 android:resource="@xml/accessibility_service_config" />
         </service>
 
-        <!-- Content Aware Detection Service -->
+        <!-- Content Aware Detection Accessibility Service -->
         <service
             android:name=".service.ContentAwareDetectionService"
-            android:exported="false"
+            android:exported="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
@@ -84,6 +84,13 @@
         <!-- Distraction App Monitor Service -->
         <service
             android:name=".service.DistractionAppMonitorService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!-- Foreground Service for monitoring -->
+        <service
+            android:name=".service.ForegroundService"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="dataSync" />

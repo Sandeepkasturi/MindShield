@@ -13,12 +13,15 @@ import android.app.usage.UsageEvents
 import android.app.usage.UsageStatsManager
 import com.example.mindshield.util.DistractionNotificationHelper
 import com.example.mindshield.data.repository.AppInfoRepository
+import com.example.mindshield.data.repository.AppTimerRepository
 import com.example.mindshield.data.model.AppInfoEntity
+import com.example.mindshield.data.model.AppTimer
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val settingsRepository: SettingsRepository,
     private val appInfoRepository: AppInfoRepository,
+    private val appTimerRepository: AppTimerRepository,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(SettingsUiState())
@@ -27,13 +30,68 @@ class SettingsViewModel @Inject constructor(
     // Content-aware detection toggle state
     private val _contentAwareEnabled = MutableStateFlow(false)
     val contentAwareEnabled: StateFlow<Boolean> = _contentAwareEnabled.asStateFlow()
+    
+    // App timer state
+    private val _appTimerEnabled = MutableStateFlow(false)
+    val appTimerEnabled: StateFlow<Boolean> = _appTimerEnabled.asStateFlow()
+    
+    private val _appTimers = MutableStateFlow<List<AppTimer>>(emptyList())
+    val appTimers: StateFlow<List<AppTimer>> = _appTimers.asStateFlow()
+
+    // Gemini API key state
+    private val _geminiApiKey = MutableStateFlow("")
+    val geminiApiKey: StateFlow<String> = _geminiApiKey.asStateFlow()
 
     fun setContentAwareEnabled(enabled: Boolean) {
-        _contentAwareEnabled.value = enabled
+        viewModelScope.launch {
+            settingsRepository.setContentAwareEnabled(enabled)
+            _contentAwareEnabled.value = enabled
+        }
+    }
+    
+    fun setAppTimerEnabled(enabled: Boolean) {
+        viewModelScope.launch {
+            settingsRepository.setAppTimerEnabled(enabled)
+            _appTimerEnabled.value = enabled
+        }
+    }
+
+    fun updateGeminiApiKey(key: String) {
+        _geminiApiKey.value = key
+        viewModelScope.launch {
+            settingsRepository.setGeminiApiKey(key)
+        }
     }
 
     init {
         loadSettings()
+        // Load content aware detection toggle from repository
+        viewModelScope.launch {
+            settingsRepository.contentAwareEnabled.collect { enabled ->
+                _contentAwareEnabled.value = enabled
+            }
+        }
+        
+        // Load app timer settings from repository
+        viewModelScope.launch {
+            settingsRepository.appTimerEnabled.collect { enabled ->
+                _appTimerEnabled.value = enabled
+            }
+        }
+        
+        // Load app timers from repository
+        viewModelScope.launch {
+            appTimerRepository.getAllAppTimers().collect { timers ->
+                _appTimers.value = timers
+            }
+        }
+
+        // Load Gemini API key from repository
+        viewModelScope.launch {
+            settingsRepository.geminiApiKey.collect { key ->
+                _geminiApiKey.value = key
+            }
+        }
     }
 
     private fun loadSettings() {
@@ -76,6 +134,9 @@ class SettingsViewModel @Inject constructor(
     }
 
     fun updateUserName(name: String) {
+        // Immediately update the UI state for responsiveness
+        _uiState.update { it.copy(userName = name) }
+        // Persist the change in the background
         viewModelScope.launch {
             settingsRepository.setUserName(name)
         }
@@ -142,7 +203,8 @@ class SettingsViewModel @Inject constructor(
                 if (isAppOpen) {
                     // Get app name for notification
                     val appName = getAppName(packageName)
-                    DistractionNotificationHelper.showWarningNotification(context, appName) {}
+                    // Remove or comment out the call to DistractionNotificationHelper.showWarningNotification(context, appName) {}
+                    // If needed, replace with in-app overlay logic or leave blank.
                 }
             } else {
                 settingsRepository.removeDistractingApp(packageName)
@@ -164,6 +226,37 @@ class SettingsViewModel @Inject constructor(
             // Implementation for clearing all app data
             // This would typically involve clearing the database
             // and resetting all settings to defaults
+        }
+    }
+    
+    // App timer functions
+    fun addAppTimer(packageName: String, appName: String, dailyLimitMinutes: Int) {
+        viewModelScope.launch {
+            val appTimer = AppTimer(
+                packageName = packageName,
+                appName = appName,
+                dailyLimitMinutes = dailyLimitMinutes
+            )
+            appTimerRepository.insertAppTimer(appTimer)
+        }
+    }
+    
+    fun updateAppTimer(appTimer: AppTimer) {
+        viewModelScope.launch {
+            appTimerRepository.updateAppTimer(appTimer)
+        }
+    }
+    
+    fun deleteAppTimer(appTimer: AppTimer) {
+        viewModelScope.launch {
+            appTimerRepository.deleteAppTimer(appTimer)
+        }
+    }
+    
+    fun toggleAppTimerEnabled(appTimer: AppTimer) {
+        viewModelScope.launch {
+            val updatedTimer = appTimer.copy(isEnabled = !appTimer.isEnabled)
+            appTimerRepository.updateAppTimer(updatedTimer)
         }
     }
 
@@ -197,7 +290,9 @@ data class SettingsUiState(
     val focusModeDuration: Int = 30,
     val distractingApps: List<AppInfo> = emptyList(),
     val appVersion: String = "1.0.0",
-    val buildNumber: String = "1"
+    val buildNumber: String = "1",
+    val appTimerEnabled: Boolean = false,
+    val appTimers: List<AppTimer> = emptyList()
 )
 
 data class AppInfo(

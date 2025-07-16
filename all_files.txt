@@ -1,0 +1,1660 @@
+
+    Directory: C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield
+
+Name           : data
+CreationTime   : 13/07/2025 10:24:01 AM
+LastWriteTime  : 22/07/2025 9:17:25 PM
+LastAccessTime : 22/07/2025 9:17:25 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : data_isolate
+CreationTime   : 22/07/2025 9:08:42 PM
+LastWriteTime  : 22/07/2025 9:08:42 PM
+LastAccessTime : 22/07/2025 9:08:42 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : di
+CreationTime   : 13/07/2025 10:28:35 AM
+LastWriteTime  : 13/07/2025 11:06:12 PM
+LastAccessTime : 22/07/2025 8:55:46 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : di_isolate
+CreationTime   : 22/07/2025 9:24:58 PM
+LastWriteTime  : 22/07/2025 9:24:58 PM
+LastAccessTime : 22/07/2025 9:24:58 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : service
+CreationTime   : 13/07/2025 10:27:27 AM
+LastWriteTime  : 22/07/2025 8:38:00 PM
+LastAccessTime : 22/07/2025 8:38:00 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : service_isolate
+CreationTime   : 22/07/2025 8:37:55 PM
+LastWriteTime  : 22/07/2025 8:38:00 PM
+LastAccessTime : 22/07/2025 8:38:00 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : ui
+CreationTime   : 13/07/2025 10:18:01 AM
+LastWriteTime  : 13/07/2025 7:21:16 PM
+LastAccessTime : 22/07/2025 9:23:43 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : ui_isolate
+CreationTime   : 22/07/2025 9:17:34 PM
+LastWriteTime  : 22/07/2025 9:17:34 PM
+LastAccessTime : 22/07/2025 9:17:34 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : util
+CreationTime   : 13/07/2025 6:50:04 PM
+LastWriteTime  : 22/07/2025 8:48:12 PM
+LastAccessTime : 22/07/2025 8:48:12 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : util_isolate
+CreationTime   : 22/07/2025 8:48:00 PM
+LastWriteTime  : 22/07/2025 8:48:12 PM
+LastAccessTime : 22/07/2025 8:48:12 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : DistractionOverlay.kt
+Length         : 3222
+CreationTime   : 13/07/2025 10:28:19 AM
+LastWriteTime  : 17/07/2025 8:32:20 PM
+LastAccessTime : 22/07/2025 9:07:09 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\DistractionOverlay.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : MainActivity.kt
+Length         : 14172
+CreationTime   : 13/07/2025 10:17:29 AM
+LastWriteTime  : 15/07/2025 11:22:29 PM
+LastAccessTime : 22/07/2025 9:07:09 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\MainActivity.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : MindShieldApplication.kt
+Length         : 2200
+CreationTime   : 13/07/2025 10:28:48 AM
+LastWriteTime  : 14/07/2025 1:00:13 AM
+LastAccessTime : 22/07/2025 9:07:09 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\MindShieldApplication.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+
+    Directory: C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data
+
+Name           : local
+CreationTime   : 13/07/2025 10:25:24 AM
+LastWriteTime  : 20/07/2025 8:33:34 AM
+LastAccessTime : 22/07/2025 8:55:46 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : local_isolate
+CreationTime   : 22/07/2025 9:09:00 PM
+LastWriteTime  : 22/07/2025 9:09:00 PM
+LastAccessTime : 22/07/2025 9:09:00 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : model
+CreationTime   : 13/07/2025 10:24:01 AM
+LastWriteTime  : 22/07/2025 9:25:19 PM
+LastAccessTime : 22/07/2025 9:25:19 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : model_isolate
+CreationTime   : 22/07/2025 9:08:57 PM
+LastWriteTime  : 22/07/2025 9:25:19 PM
+LastAccessTime : 22/07/2025 9:25:19 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : repository
+CreationTime   : 13/07/2025 10:24:34 AM
+LastWriteTime  : 20/07/2025 8:33:51 AM
+LastAccessTime : 22/07/2025 8:55:46 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : repository_isolate
+CreationTime   : 22/07/2025 9:17:25 PM
+LastWriteTime  : 22/07/2025 9:17:25 PM
+LastAccessTime : 22/07/2025 9:17:25 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+
+    Directory: C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\local
+
+Name           : AppInfoDao.kt
+Length         : 657
+CreationTime   : 15/07/2025 7:49:41 AM
+LastWriteTime  : 15/07/2025 7:49:44 AM
+LastAccessTime : 22/07/2025 9:07:09 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\local\AppInfoDao.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : AppTimerDao.kt
+Length         : 1620
+CreationTime   : 20/07/2025 8:33:34 AM
+LastWriteTime  : 21/07/2025 1:26:13 PM
+LastAccessTime : 22/07/2025 9:07:09 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\local\AppTimerDao.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : AppUsageDao.kt
+Length         : 1240
+CreationTime   : 13/07/2025 10:25:24 AM
+LastWriteTime  : 14/07/2025 7:55:41 PM
+LastAccessTime : 22/07/2025 9:07:09 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\local\AppUsageDao.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : DistractionEventDao.kt
+Length         : 1237
+CreationTime   : 13/07/2025 10:25:40 AM
+LastWriteTime  : 13/07/2025 10:25:45 AM
+LastAccessTime : 22/07/2025 9:07:09 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\local\DistractionEventDao.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : MindShieldDatabase.kt
+Length         : 1846
+CreationTime   : 13/07/2025 10:26:38 AM
+LastWriteTime  : 22/07/2025 8:17:43 PM
+LastAccessTime : 22/07/2025 9:23:19 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\local\MindShieldDatabase.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : SettingsDataStore.kt
+Length         : 6242
+CreationTime   : 13/07/2025 10:26:24 AM
+LastWriteTime  : 21/07/2025 11:22:48 AM
+LastAccessTime : 22/07/2025 9:07:09 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\local\SettingsDataStore.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+
+    Directory: C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\model_isolate
+
+Name           : ActionDecision.kt
+Length         : 100
+CreationTime   : 15/07/2025 6:48:09 PM
+LastWriteTime  : 15/07/2025 6:48:11 PM
+LastAccessTime : 22/07/2025 9:23:19 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\model_isolate\ActionDecision.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : AppInfo.kt
+Length         : 341
+CreationTime   : 13/07/2025 7:37:28 PM
+LastWriteTime  : 13/07/2025 7:37:31 PM
+LastAccessTime : 22/07/2025 9:23:19 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\model_isolate\AppInfo.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : AppInfoEntity.kt
+Length         : 417
+CreationTime   : 15/07/2025 7:49:30 AM
+LastWriteTime  : 15/07/2025 7:49:34 AM
+LastAccessTime : 22/07/2025 9:23:19 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\model_isolate\AppInfoEntity.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : AppSession.kt
+Length         : 210
+CreationTime   : 13/07/2025 11:43:23 AM
+LastWriteTime  : 13/07/2025 11:43:26 AM
+LastAccessTime : 22/07/2025 9:23:19 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\model_isolate\AppSession.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : AppTimer.kt
+Length         : 446
+CreationTime   : 20/07/2025 8:33:12 AM
+LastWriteTime  : 21/07/2025 1:26:28 PM
+LastAccessTime : 22/07/2025 9:23:19 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\model_isolate\AppTimer.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : AppUsage.kt
+Length         : 460
+CreationTime   : 13/07/2025 10:24:01 AM
+LastWriteTime  : 13/07/2025 10:24:06 AM
+LastAccessTime : 22/07/2025 9:23:19 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\model_isolate\AppUsage.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : ClassificationResult.kt
+Length         : 186
+CreationTime   : 15/07/2025 6:47:11 PM
+LastWriteTime  : 17/07/2025 9:12:03 PM
+LastAccessTime : 22/07/2025 9:23:19 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\model_isolate\ClassificationResult.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : DistractionEvent.kt
+Length         : 434
+CreationTime   : 13/07/2025 10:24:13 AM
+LastWriteTime  : 13/07/2025 10:24:18 AM
+LastAccessTime : 22/07/2025 9:23:19 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\model_isolate\DistractionEvent.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+
+    Directory: C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\repository
+
+Name           : AppInfoRepository.kt
+Length         : 793
+CreationTime   : 15/07/2025 7:50:58 AM
+LastWriteTime  : 15/07/2025 7:51:02 AM
+LastAccessTime : 22/07/2025 9:07:09 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\repository\AppInfoRepository.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : AppTimerRepository.kt
+Length         : 2905
+CreationTime   : 20/07/2025 8:33:51 AM
+LastWriteTime  : 21/07/2025 1:26:01 PM
+LastAccessTime : 22/07/2025 9:07:09 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\repository\AppTimerRepository.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : AppUsageRepository.kt
+Length         : 9200
+CreationTime   : 13/07/2025 10:24:34 AM
+LastWriteTime  : 14/07/2025 7:55:53 PM
+LastAccessTime : 22/07/2025 9:07:09 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\repository\AppUsageRepository.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : DistractionEventRepository.kt
+Length         : 1778
+CreationTime   : 13/07/2025 10:24:48 AM
+LastWriteTime  : 13/07/2025 10:24:53 AM
+LastAccessTime : 22/07/2025 9:07:09 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\repository\DistractionEventRepository.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : SettingsRepository.kt
+Length         : 4338
+CreationTime   : 13/07/2025 10:25:06 AM
+LastWriteTime  : 21/07/2025 11:23:15 AM
+LastAccessTime : 22/07/2025 9:07:09 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\data\repository\SettingsRepository.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+
+    Directory: C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\di
+
+Name           : DatabaseModule.kt
+Length         : 1892
+CreationTime   : 13/07/2025 10:28:35 AM
+LastWriteTime  : 20/07/2025 8:40:42 AM
+LastAccessTime : 22/07/2025 9:00:05 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\di\DatabaseModule.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : ServiceModule.kt
+Length         : 1835
+CreationTime   : 13/07/2025 11:06:12 PM
+LastWriteTime  : 21/07/2025 11:25:14 AM
+LastAccessTime : 22/07/2025 9:00:05 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\di\ServiceModule.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+
+    Directory: C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\service_isolate
+
+Name           : AppTimerService.kt
+Length         : 7550
+CreationTime   : 20/07/2025 8:37:48 AM
+LastWriteTime  : 21/07/2025 1:25:41 PM
+LastAccessTime : 22/07/2025 8:37:50 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\service_isolate\AppTimerService.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : BootCompletedReceiver.kt
+Length         : 684
+CreationTime   : 15/07/2025 11:16:02 PM
+LastWriteTime  : 15/07/2025 11:16:06 PM
+LastAccessTime : 22/07/2025 8:37:50 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\service_isolate\BootCompletedReceiver.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : ContentAnalyzerReceiver.kt
+Length         : 2471
+CreationTime   : 15/07/2025 6:53:43 PM
+LastWriteTime  : 20/07/2025 10:10:26 AM
+LastAccessTime : 22/07/2025 8:37:50 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\service_isolate\ContentAnalyzerReceiver.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : ContentAwareDetectionService.kt
+Length         : 232719
+CreationTime   : 13/07/2025 11:01:50 PM
+LastWriteTime  : 21/07/2025 1:36:54 PM
+LastAccessTime : 22/07/2025 8:37:50 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\service_isolate\ContentAwareDetectionService.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : DistractionAccessibilityService.kt
+Length         : 5676
+CreationTime   : 13/07/2025 10:48:13 AM
+LastWriteTime  : 21/07/2025 11:56:52 AM
+LastAccessTime : 22/07/2025 8:37:50 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\service_isolate\DistractionAccessibilityService.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : DistractionAlertManager.kt
+Length         : 1855
+CreationTime   : 13/07/2025 10:28:00 AM
+LastWriteTime  : 13/07/2025 11:43:37 AM
+LastAccessTime : 22/07/2025 8:37:50 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\service_isolate\DistractionAlertManager.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : DistractionAppMonitorService.kt
+Length         : 2006
+CreationTime   : 13/07/2025 9:43:59 PM
+LastWriteTime  : 22/07/2025 8:30:42 PM
+LastAccessTime : 22/07/2025 8:37:50 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\service_isolate\DistractionAppMonitorService.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : DistractionDetectionService.kt
+Length         : 11076
+CreationTime   : 13/07/2025 7:20:42 PM
+LastWriteTime  : 14/07/2025 10:41:07 PM
+LastAccessTime : 22/07/2025 8:37:50 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\service_isolate\DistractionDetectionService.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : DistractionDetector.kt
+Length         : 6834
+CreationTime   : 13/07/2025 10:27:47 AM
+LastWriteTime  : 13/07/2025 9:04:12 PM
+LastAccessTime : 22/07/2025 8:37:50 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\service_isolate\DistractionDetector.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : ForegroundService.kt
+Length         : 2337
+CreationTime   : 16/07/2025 9:24:33 PM
+LastWriteTime  : 16/07/2025 9:24:38 PM
+LastAccessTime : 22/07/2025 8:37:50 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\service_isolate\ForegroundService.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : MonitoringService.kt
+Length         : 9513
+CreationTime   : 13/07/2025 10:27:27 AM
+LastWriteTime  : 14/07/2025 12:59:19 AM
+LastAccessTime : 22/07/2025 8:37:50 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\service_isolate\MonitoringService.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : TextExtractorService.kt
+Length         : 3356
+CreationTime   : 15/07/2025 6:51:16 PM
+LastWriteTime  : 16/07/2025 9:26:22 PM
+LastAccessTime : 22/07/2025 8:37:50 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\service_isolate\TextExtractorService.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+
+    Directory: C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui
+
+Name           : activity
+CreationTime   : 13/07/2025 7:21:16 PM
+LastWriteTime  : 13/07/2025 7:21:16 PM
+LastAccessTime : 22/07/2025 8:55:46 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : component
+CreationTime   : 13/07/2025 10:23:03 AM
+LastWriteTime  : 13/07/2025 11:02:15 AM
+LastAccessTime : 22/07/2025 8:55:46 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : screen
+CreationTime   : 13/07/2025 10:18:47 AM
+LastWriteTime  : 15/07/2025 7:32:50 PM
+LastAccessTime : 22/07/2025 9:01:31 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : theme
+CreationTime   : 13/07/2025 10:23:19 AM
+LastWriteTime  : 13/07/2025 10:23:48 AM
+LastAccessTime : 22/07/2025 8:55:46 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+Name           : viewmodel
+CreationTime   : 13/07/2025 10:18:01 AM
+LastWriteTime  : 13/07/2025 10:22:49 AM
+LastAccessTime : 22/07/2025 8:55:46 PM
+Mode           : d----
+LinkType       : 
+Target         : 
+
+
+    Directory: C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\activity
+
+Name           : DistractionOverlayActivity.kt
+Length         : 9177
+CreationTime   : 13/07/2025 7:21:16 PM
+LastWriteTime  : 13/07/2025 7:45:15 PM
+LastAccessTime : 22/07/2025 9:07:10 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\activity\DistractionOverlayActivity.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+
+    Directory: C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\component
+
+Name           : MetricCard.kt
+Length         : 1747
+CreationTime   : 13/07/2025 10:23:03 AM
+LastWriteTime  : 13/07/2025 10:23:06 AM
+LastAccessTime : 22/07/2025 9:07:10 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\component\MetricCard.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : ProfessionalCard.kt
+Length         : 1406
+CreationTime   : 13/07/2025 11:02:15 AM
+LastWriteTime  : 13/07/2025 11:02:18 AM
+LastAccessTime : 22/07/2025 9:07:10 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\component\ProfessionalCard.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+
+    Directory: C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\screen
+
+Name           : AnalyticsScreen.kt
+Length         : 10936
+CreationTime   : 13/07/2025 10:19:22 AM
+LastWriteTime  : 16/07/2025 10:17:11 PM
+LastAccessTime : 22/07/2025 9:07:10 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\screen\AnalyticsScreen.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : HomeScreen.kt
+Length         : 18417
+CreationTime   : 13/07/2025 10:18:47 AM
+LastWriteTime  : 19/07/2025 9:04:48 PM
+LastAccessTime : 22/07/2025 9:07:10 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\screen\HomeScreen.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : SettingsScreen.kt
+Length         : 28276
+CreationTime   : 13/07/2025 10:22:18 AM
+LastWriteTime  : 21/07/2025 11:23:51 AM
+LastAccessTime : 22/07/2025 9:07:10 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\screen\SettingsScreen.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+
+    Directory: C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\theme
+
+Name           : Color.kt
+Length         : 297
+CreationTime   : 13/07/2025 10:23:32 AM
+LastWriteTime  : 13/07/2025 10:23:37 AM
+LastAccessTime : 22/07/2025 9:00:05 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\theme\Color.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : Theme.kt
+Length         : 1924
+CreationTime   : 13/07/2025 10:23:19 AM
+LastWriteTime  : 13/07/2025 10:23:23 AM
+LastAccessTime : 22/07/2025 9:00:05 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\theme\Theme.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : Type.kt
+Length         : 1025
+CreationTime   : 13/07/2025 10:23:48 AM
+LastWriteTime  : 13/07/2025 10:23:54 AM
+LastAccessTime : 22/07/2025 9:00:05 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\theme\Type.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+
+    Directory: C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\viewmodel
+
+Name           : AnalyticsViewModel.kt
+Length         : 9107
+CreationTime   : 13/07/2025 10:20:19 AM
+LastWriteTime  : 16/07/2025 10:16:46 PM
+LastAccessTime : 22/07/2025 9:07:10 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\viewmodel\AnalyticsViewModel.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : HomeViewModel.kt
+Length         : 11940
+CreationTime   : 13/07/2025 10:18:01 AM
+LastWriteTime  : 14/07/2025 9:47:08 PM
+LastAccessTime : 22/07/2025 9:07:10 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\viewmodel\HomeViewModel.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : SettingsViewModel.kt
+Length         : 11578
+CreationTime   : 13/07/2025 10:22:49 AM
+LastWriteTime  : 21/07/2025 11:23:31 AM
+LastAccessTime : 22/07/2025 9:07:10 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\ui\viewmodel\SettingsViewModel.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+
+    Directory: C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate
+
+Name           : BatteryOptimizationHelper.kt
+Length         : 1337
+CreationTime   : 16/07/2025 9:22:48 PM
+LastWriteTime  : 16/07/2025 9:22:52 PM
+LastAccessTime : 22/07/2025 8:46:23 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate\BatteryOptimizationHelper.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : ContentAnalyzer.kt
+Length         : 4177
+CreationTime   : 13/07/2025 11:02:31 PM
+LastWriteTime  : 13/07/2025 11:02:35 PM
+LastAccessTime : 22/07/2025 8:46:23 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate\ContentAnalyzer.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : ContentAwareServiceManager.kt
+Length         : 2550
+CreationTime   : 13/07/2025 11:05:39 PM
+LastWriteTime  : 14/07/2025 12:26:52 AM
+LastAccessTime : 22/07/2025 8:46:23 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate\ContentAwareServiceManager.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : ContentDecisionEngine.kt
+Length         : 2123
+CreationTime   : 15/07/2025 6:49:12 PM
+LastWriteTime  : 15/07/2025 6:49:15 PM
+LastAccessTime : 22/07/2025 8:46:23 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate\ContentDecisionEngine.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : DistractionAppRepository.kt
+Length         : 2477
+CreationTime   : 13/07/2025 9:57:34 PM
+LastWriteTime  : 15/07/2025 10:02:29 PM
+LastAccessTime : 22/07/2025 8:46:23 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate\DistractionAppRepository.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : DistractionBlockOverlay.kt
+Length         : 4351
+CreationTime   : 14/07/2025 7:53:14 PM
+LastWriteTime  : 21/07/2025 11:37:08 AM
+LastAccessTime : 22/07/2025 8:46:23 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate\DistractionBlockOverlay.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : DistractionNotificationHelper.kt
+Length         : 5125
+CreationTime   : 14/07/2025 7:52:32 PM
+LastWriteTime  : 21/07/2025 11:52:55 AM
+LastAccessTime : 22/07/2025 8:46:23 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate\DistractionNotificationHelper.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : DistractionNotificationManager.kt
+Length         : 3955
+CreationTime   : 15/07/2025 6:55:01 PM
+LastWriteTime  : 21/07/2025 11:54:22 AM
+LastAccessTime : 22/07/2025 8:46:23 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate\DistractionNotificationManager.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : DistractionSessionManager.kt
+Length         : 4836
+CreationTime   : 14/07/2025 7:50:12 PM
+LastWriteTime  : 14/07/2025 9:31:38 PM
+LastAccessTime : 22/07/2025 8:46:23 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate\DistractionSessionManager.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : GeminiContentClassifier.kt
+Length         : 5543
+CreationTime   : 15/07/2025 6:48:30 PM
+LastWriteTime  : 21/07/2025 11:32:32 AM
+LastAccessTime : 22/07/2025 8:46:23 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate\GeminiContentClassifier.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : MemoryManager.kt
+Length         : 3578
+CreationTime   : 14/07/2025 12:59:50 AM
+LastWriteTime  : 14/07/2025 12:59:55 AM
+LastAccessTime : 22/07/2025 8:46:23 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate\MemoryManager.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : OverlayPermissionHelper.kt
+Length         : 677
+CreationTime   : 13/07/2025 6:50:04 PM
+LastWriteTime  : 13/07/2025 6:50:06 PM
+LastAccessTime : 22/07/2025 8:46:23 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate\OverlayPermissionHelper.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : PerformanceOptimizer.kt
+Length         : 2185
+CreationTime   : 14/07/2025 12:44:08 AM
+LastWriteTime  : 14/07/2025 12:44:15 AM
+LastAccessTime : 22/07/2025 8:46:23 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate\PerformanceOptimizer.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : ScreenCaptureHelper.kt
+Length         : 2780
+CreationTime   : 13/07/2025 11:03:18 PM
+LastWriteTime  : 13/07/2025 11:03:21 PM
+LastAccessTime : 22/07/2025 8:46:23 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate\ScreenCaptureHelper.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+Name           : UsageStatsPermissionHelper.kt
+Length         : 1509
+CreationTime   : 13/07/2025 11:26:31 PM
+LastWriteTime  : 13/07/2025 11:26:34 PM
+LastAccessTime : 22/07/2025 8:46:23 PM
+Mode           : -a---
+LinkType       : 
+Target         : 
+VersionInfo    : File:             C:\Users\Sandeep Kasturi\AndroidStudioProjects\MindShield\app\src\main\java\com\example\mindshield\util_isolate\UsageStatsPermissionHelper.kt
+                 InternalName:     
+                 OriginalFilename: 
+                 FileVersion:      
+                 FileDescription:  
+                 Product:          
+                 ProductVersion:   
+                 Debug:            False
+                 Patched:          False
+                 PreRelease:       False
+                 PrivateBuild:     False
+                 SpecialBuild:     False
+                 Language:         
+                 
+
+

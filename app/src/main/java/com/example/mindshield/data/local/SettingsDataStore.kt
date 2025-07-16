@@ -26,6 +26,12 @@ class SettingsDataStore @Inject constructor(
         val FOCUS_MODE_ENABLED = booleanPreferencesKey("focus_mode_enabled")
         val FOCUS_MODE_DURATION = intPreferencesKey("focus_mode_duration")
         val DISTRACTING_APPS = stringSetPreferencesKey("distracting_apps")
+        // Add content aware detection toggle key
+        val CONTENT_AWARE_ENABLED = booleanPreferencesKey("content_aware_enabled")
+        // App timer settings
+        val APP_TIMER_ENABLED = booleanPreferencesKey("app_timer_enabled")
+        // Add Gemini API key
+        val GEMINI_API_KEY = stringPreferencesKey("gemini_api_key")
     }
     
     val userName: Flow<String> = context.dataStore.data.map { preferences ->
@@ -58,6 +64,19 @@ class SettingsDataStore @Inject constructor(
     
     val distractingApps: Flow<Set<String>> = context.dataStore.data.map { preferences ->
         preferences[PreferencesKeys.DISTRACTING_APPS] ?: emptySet()
+    }
+    
+    val contentAwareEnabled: Flow<Boolean> = context.dataStore.data.map { preferences ->
+        preferences[PreferencesKeys.CONTENT_AWARE_ENABLED] ?: false
+    }
+    
+    val appTimerEnabled: Flow<Boolean> = context.dataStore.data.map { preferences ->
+        preferences[PreferencesKeys.APP_TIMER_ENABLED] ?: false
+    }
+    
+    // Add Flow for Gemini API key
+    val geminiApiKey: Flow<String> = context.dataStore.data.map { preferences ->
+        preferences[PreferencesKeys.GEMINI_API_KEY] ?: ""
     }
     
     suspend fun setUserName(name: String) {
@@ -118,6 +137,25 @@ class SettingsDataStore @Inject constructor(
     suspend fun clearAllSettings() {
         context.dataStore.edit { preferences ->
             preferences.clear()
+        }
+    }
+
+    suspend fun setContentAwareEnabled(enabled: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[PreferencesKeys.CONTENT_AWARE_ENABLED] = enabled
+        }
+    }
+    
+    suspend fun setAppTimerEnabled(enabled: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[PreferencesKeys.APP_TIMER_ENABLED] = enabled
+        }
+    }
+
+    // Add setter for Gemini API key
+    suspend fun setGeminiApiKey(key: String) {
+        context.dataStore.edit { preferences ->
+            preferences[PreferencesKeys.GEMINI_API_KEY] = key
         }
     }
 } 

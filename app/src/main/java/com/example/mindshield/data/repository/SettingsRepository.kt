@@ -27,6 +27,18 @@ class SettingsRepository @Inject constructor(
     
     val distractingApps: Flow<Set<String>> = settingsDataStore.distractingApps
     
+    // Add content aware detection toggle
+    val contentAwareEnabled: Flow<Boolean> = settingsDataStore.contentAwareEnabled
+    
+    // App timer settings
+    val appTimerEnabled: Flow<Boolean> = settingsDataStore.appTimerEnabled
+    
+    // Add Gemini API key support
+    val geminiApiKey: Flow<String> = settingsDataStore.geminiApiKey
+    suspend fun setGeminiApiKey(key: String) {
+        settingsDataStore.setGeminiApiKey(key)
+    }
+    
     suspend fun initializeDefaultsIfNeeded() {
         val defaultApps = setOf(
             "com.facebook.katana", // Facebook
@@ -96,5 +108,13 @@ class SettingsRepository @Inject constructor(
     
     suspend fun clearAllSettings() {
         settingsDataStore.clearAllSettings()
+    }
+
+    suspend fun setContentAwareEnabled(enabled: Boolean) {
+        settingsDataStore.setContentAwareEnabled(enabled)
+    }
+    
+    suspend fun setAppTimerEnabled(enabled: Boolean) {
+        settingsDataStore.setAppTimerEnabled(enabled)
     }
 } 

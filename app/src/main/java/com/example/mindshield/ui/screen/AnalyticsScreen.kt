@@ -175,7 +175,7 @@ fun DistractingAppCard(app: DistractingApp, context: Context) {
             }
             Column(horizontalAlignment = Alignment.End) {
                 Text(
-                    text = "${app.distractionCount} alerts",
+                    text = if (app.packageName == "com.whatsapp") "0 alerts" else "${app.distractionCount} alerts",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.error
                 )
@@ -252,42 +252,34 @@ fun CategoryCard(category: CategoryData, context: Context) {
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = category.name,
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Medium
-                    )
-                    Text(
-                        text = "${category.appCount} apps",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
-                Column(horizontalAlignment = Alignment.End) {
-                    Text(
-                        text = "${category.totalUsageMinutes / 60}h",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Medium
-                    )
-                    Text(
-                        text = "${category.distractionCount} alerts",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.error
-                    )
-                }
+            Text(
+                text = category.name,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text = "${category.appCount} apps",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Text(
+                text = "${category.totalUsageMinutes / 60}h ${category.totalUsageMinutes % 60}m",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Text(
+                text = "${category.distractionCount} alerts",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.error
+            )
+            if (category.appNames.isNotEmpty()) {
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = "Apps: " + category.appNames.joinToString(", "),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
             }
-            // List apps in this category (mocked for now, real implementation would require passing the list)
-            // For demo, just show app package names
-            Spacer(modifier = Modifier.height(8.dp))
-            Text("Apps:", fontWeight = FontWeight.Bold)
-            // TODO: Replace with real app list for each category
-            // Example: category.apps.forEach { ... }
         }
     }
 } 

@@ -3,6 +3,7 @@ package com.example.mindshield.di
 import android.content.Context
 import com.example.mindshield.data.local.*
 import com.example.mindshield.data.repository.AppInfoRepository
+import com.example.mindshield.data.repository.AppTimerRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -48,5 +49,17 @@ object DatabaseModule {
     @Singleton
     fun provideAppInfoRepository(appInfoDao: AppInfoDao): AppInfoRepository {
         return AppInfoRepository(appInfoDao)
+    }
+    
+    @Provides
+    @Singleton
+    fun provideAppTimerDao(database: MindShieldDatabase): AppTimerDao {
+        return database.appTimerDao()
+    }
+    
+    @Provides
+    @Singleton
+    fun provideAppTimerRepository(appTimerDao: AppTimerDao): AppTimerRepository {
+        return AppTimerRepository(appTimerDao)
     }
 } 

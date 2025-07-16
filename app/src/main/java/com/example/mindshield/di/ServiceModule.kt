@@ -5,6 +5,7 @@ import com.example.mindshield.util.ScreenCaptureHelper
 import com.example.mindshield.util.GeminiContentClassifier
 import com.example.mindshield.util.ContentDecisionEngine
 import com.example.mindshield.util.DistractionNotificationManager
+import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,8 +25,14 @@ object ServiceModule {
 
     @Provides
     @Singleton
-    fun provideGeminiContentClassifier(): GeminiContentClassifier {
-        return GeminiContentClassifier()
+    fun provideGeminiContentClassifier(gson: Gson, settingsRepository: com.example.mindshield.data.repository.SettingsRepository): GeminiContentClassifier {
+        return GeminiContentClassifier(gson, settingsRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGson(): Gson {
+        return Gson()
     }
 
     @Provides
@@ -38,5 +45,11 @@ object ServiceModule {
     @Singleton
     fun provideDistractionNotificationManager(@ApplicationContext context: Context): DistractionNotificationManager {
         return DistractionNotificationManager(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSettingsRepository(settingsDataStore: com.example.mindshield.data.local.SettingsDataStore): com.example.mindshield.data.repository.SettingsRepository {
+        return com.example.mindshield.data.repository.SettingsRepository(settingsDataStore)
     }
 } 

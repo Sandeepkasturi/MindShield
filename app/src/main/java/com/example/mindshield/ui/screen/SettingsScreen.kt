@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mindshield.ui.viewmodel.SettingsViewModel
 import com.example.mindshield.ui.viewmodel.AppInfo
+import com.example.mindshield.data.model.AppTimer
 import android.content.Intent
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.foundation.clickable
@@ -43,6 +44,120 @@ private data class SettingsAppInfo(
     var isDistracting: Boolean
 )
 
+@Composable
+fun AppTimerCard(
+    timer: AppTimer,
+    onToggleEnabled: () -> Unit,
+    onDelete: () -> Unit,
+    onUpdateLimit: (Int) -> Unit
+) {
+    var showLimitDialog by remember { mutableStateOf(false) }
+    var tempLimit by remember { mutableStateOf(timer.dailyLimitMinutes) }
+    
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = timer.appName,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Text(
+                        text = "Daily limit: ${timer.dailyLimitMinutes} minutes",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    if (timer.currentUsageMinutes > 0) {
+                        Text(
+                            text = "Used today: ${timer.currentUsageMinutes} minutes",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+                
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Switch(
+                        checked = timer.isEnabled,
+                        onCheckedChange = { onToggleEnabled() }
+                    )
+                    IconButton(onClick = onDelete) {
+                        Icon(
+                            Icons.Default.Delete,
+                            contentDescription = "Delete timer",
+                            tint = MaterialTheme.colorScheme.error
+                        )
+                    }
+                }
+            }
+            
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Daily Limit (minutes)",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                TextButton(onClick = { showLimitDialog = true }) {
+                    Text("${timer.dailyLimitMinutes} min")
+                }
+            }
+        }
+    }
+    
+    if (showLimitDialog) {
+        AlertDialog(
+            onDismissRequest = { showLimitDialog = false },
+            title = { Text("Set Daily Limit") },
+            text = {
+                Column {
+                    Text("Set daily time limit for ${timer.appName}")
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Slider(
+                        value = tempLimit.toFloat(),
+                        onValueChange = { tempLimit = it.toInt() },
+                        valueRange = 1f..160f, // 1 minute to 160 minutes
+                        steps = 159
+                    )
+                    Text("${tempLimit} minutes", style = MaterialTheme.typography.bodyLarge)
+                }
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        onUpdateLimit(tempLimit)
+                        showLimitDialog = false
+                    }
+                ) {
+                    Text("Save")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showLimitDialog = false }) {
+                    Text("Cancel")
+                }
+            }
+        )
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
@@ -54,8 +169,14 @@ fun SettingsScreen(
     val textColor = MaterialTheme.colorScheme.onSurface
     val context = LocalContext.current
     var showDialog by remember { mutableStateOf(false) }
+    var showAppTimerDialog by remember { mutableStateOf(false) }
     // Content-aware detection toggle
     val contentAwareEnabled by viewModel.contentAwareEnabled.collectAsState()
+    val appTimerEnabled by viewModel.appTimerEnabled.collectAsState()
+    val appTimers by viewModel.appTimers.collectAsState()
+    val geminiApiKey by viewModel.geminiApiKey.collectAsState()
+    var apiKeyInput by remember { mutableStateOf("") }
+    var showApiKeyEdit by remember { mutableStateOf(false) }
     // Cache all apps on first composition
     val allApps = remember {
         context.packageManager.getInstalledApplications(android.content.pm.PackageManager.GET_META_DATA)
@@ -104,6 +225,54 @@ fun SettingsScreen(
                     containerColor = MaterialTheme.colorScheme.surface
                 )
             )
+            // Gemini API Key Section
+            Spacer(modifier = Modifier.height(8.dp))
+            Text("Gemini API Key", style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onBackground)
+            if (!showApiKeyEdit) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = if (geminiApiKey.isNotBlank()) "••••••••••••••••••••" else "No API key set",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
+                    )
+                    TextButton(onClick = {
+                        apiKeyInput = geminiApiKey
+                        showApiKeyEdit = true
+                    }) {
+                        Text(if (geminiApiKey.isBlank()) "Add" else "Edit")
+                    }
+                }
+            } else {
+                OutlinedTextField(
+                    value = apiKeyInput,
+                    onValueChange = { apiKeyInput = it },
+                    label = { Text("Enter Gemini API Key") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true,
+                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                        focusedBorderColor = MaterialTheme.colorScheme.primary,
+                        unfocusedBorderColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                        cursorColor = MaterialTheme.colorScheme.primary,
+                        containerColor = MaterialTheme.colorScheme.surface
+                    )
+                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    TextButton(onClick = {
+                        showApiKeyEdit = false
+                    }) { Text("Cancel") }
+                    TextButton(onClick = {
+                        viewModel.updateGeminiApiKey(apiKeyInput)
+                        showApiKeyEdit = false
+                    }) { Text("Save") }
+                }
+            }
             // Monitoring toggle
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -260,6 +429,119 @@ fun SettingsScreen(
                     }
                 )
             }
+            
+            // App Timer Section
+            Text("App Timer Settings", style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.onBackground)
+            Text("Set daily time limits for apps to prevent overuse", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f))
+            
+            // App Timer toggle
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text("Enable App Timers", style = MaterialTheme.typography.bodyLarge, color = MaterialTheme.colorScheme.onBackground)
+                    Text("Set daily limits for app usage", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f))
+                }
+                Switch(
+                    checked = appTimerEnabled,
+                    onCheckedChange = { viewModel.setAppTimerEnabled(it) }
+                )
+            }
+            
+            if (appTimerEnabled) {
+                // Add App Timer Button
+                Button(
+                    onClick = { showAppTimerDialog = true },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Icon(Icons.Default.Add, contentDescription = "Add App Timer")
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text("Add App Timer")
+                }
+                
+                // Display existing app timers
+                appTimers.forEach { timer ->
+                    AppTimerCard(
+                        timer = timer,
+                        onToggleEnabled = { viewModel.toggleAppTimerEnabled(timer) },
+                        onDelete = { viewModel.deleteAppTimer(timer) },
+                        onUpdateLimit = { newLimit ->
+                            viewModel.updateAppTimer(timer.copy(dailyLimitMinutes = newLimit))
+                        }
+                    )
+                }
+            }
+            
+            // App Timer Selection Dialog
+            if (showAppTimerDialog) {
+                var selectedLimit by remember { mutableStateOf(60) }
+                var selectedApp by remember { mutableStateOf<AppInfo?>(null) }
+                
+                AlertDialog(
+                    onDismissRequest = { showAppTimerDialog = false },
+                    title = { Text("Add App Timer") },
+                    text = {
+                        Column {
+                            Text("Select an app to set a daily time limit:")
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Box(Modifier.heightIn(max = 300.dp)) {
+                                LazyColumn {
+                                    items(appsWithStatus.filter { app ->
+                                        !appTimers.any { it.packageName == app.packageName }
+                                    }) { app ->
+                                        Row(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .clickable {
+                                                    selectedApp = app
+                                                }
+                                                .padding(vertical = 8.dp),
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+                                            Text(app.appName, modifier = Modifier.weight(1f))
+                                            if (selectedApp?.packageName == app.packageName) {
+                                                Icon(Icons.Default.Check, contentDescription = "Selected", tint = MaterialTheme.colorScheme.primary)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (selectedApp != null) {
+                                Spacer(modifier = Modifier.height(16.dp))
+                                Text("Daily Limit (minutes):")
+                                Slider(
+                                    value = selectedLimit.toFloat(),
+                                    onValueChange = { selectedLimit = it.toInt() },
+                                    valueRange = 1f..160f, // 1 minute to 160 minutes
+                                    steps = 159
+                                )
+                                Text("${selectedLimit} minutes", style = MaterialTheme.typography.bodyLarge)
+                            }
+                        }
+                    },
+                    confirmButton = {
+                        TextButton(
+                            onClick = {
+                                selectedApp?.let { app ->
+                                    viewModel.addAppTimer(app.packageName, app.appName, selectedLimit)
+                                }
+                                showAppTimerDialog = false
+                            },
+                            enabled = selectedApp != null
+                        ) {
+                            Text("Add Timer")
+                        }
+                    },
+                    dismissButton = {
+                        TextButton(onClick = { showAppTimerDialog = false }) {
+                            Text("Cancel")
+                        }
+                    }
+                )
+            }
+            
             // Data management
             Row(
                 modifier = Modifier.fillMaxWidth(),

@@ -59,27 +59,18 @@ class DistractionOverlay(private val context: Context) {
     private fun createOverlayView(): View {
         val inflater = LayoutInflater.from(context)
         val view = inflater.inflate(R.layout.distraction_overlay, null)
-        
-        val titleText = view.findViewById<TextView>(R.id.overlay_title)
-        val messageText = view.findViewById<TextView>(R.id.overlay_message)
-        val acknowledgeButton = view.findViewById<Button>(R.id.overlay_acknowledge)
-        val dismissButton = view.findViewById<Button>(R.id.overlay_dismiss)
-        
+
+        val messageText = view.findViewById<TextView>(R.id.blur_overlay_message)
+        val timerText = view.findViewById<TextView>(R.id.blur_overlay_timer)
+
         session?.let { session ->
-            titleText.text = "Distraction Detected!"
-            messageText.text = "You've been using ${session.appName} for ${session.duration} minutes"
+            messageText.text = "Hey, you are consuming unproductive, entertainment content. I would recommend you to take a break and come again."
+            // You can set timerText.text here if you want to initialize
         }
-        
-        acknowledgeButton.setOnClickListener {
-            // Handle acknowledge action
-            dismiss()
-        }
-        
-        dismissButton.setOnClickListener {
-            // Handle dismiss action
-            dismiss()
-        }
-        
+
+        // Timer update logic should be handled externally or via a method
+        // No buttons or dismiss logic
+
         return view
     }
     

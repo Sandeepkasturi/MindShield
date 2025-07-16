@@ -1,7 +1,5 @@
 package com.example.mindshield.util
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -24,37 +22,11 @@ object DistractionNotificationHelper {
     private var dismissReceiver: BroadcastReceiver? = null
     private var registered = false
 
-    fun showWarningNotification(context: Context, appName: String, onDismiss: () -> Unit) {
-        createChannel(context)
-        dismissListener = onDismiss
-        registerDismissReceiver(context)
-
-        val dismissIntent = Intent(ACTION_DISMISS)
-        val pendingDismiss = PendingIntent.getBroadcast(
-            context,
-            0,
-            dismissIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or (if (Build.VERSION.SDK_INT >= 23) PendingIntent.FLAG_IMMUTABLE else 0)
-        )
-
-        val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_warning)
-            .setContentTitle("Take a Break from $appName")
-            .setContentText("You've been using $appName for a while. Consider a short break!")
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setCategory(NotificationCompat.CATEGORY_REMINDER)
-            .setAutoCancel(true)
-            .setOngoing(false)
-            .setColor(Color.YELLOW)
-            .addAction(R.drawable.ic_warning, "Dismiss", pendingDismiss)
-
-        val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        manager.notify(NOTIFICATION_ID, builder.build())
-    }
+    // Remove or comment out all NotificationCompat.Builder, notify, and showWarningNotification logic for distraction alerts.
+    // Only use in-app overlays for all distraction events.
 
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
     fun showYouTubeDistractionNotification(context: Context, userName: String, onDismiss: () -> Unit, onExit: () -> Unit) {
-        createChannel(context)
         val dismissIntent = Intent(ACTION_DISMISS)
         val exitIntent = Intent(ACTION_EXIT)
         val pendingDismiss = PendingIntent.getBroadcast(
@@ -84,8 +56,13 @@ object DistractionNotificationHelper {
                 }
             }
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         context.registerReceiver(receiver, IntentFilter(ACTION_DISMISS), Context.RECEIVER_NOT_EXPORTED)
         context.registerReceiver(receiver, IntentFilter(ACTION_EXIT), Context.RECEIVER_NOT_EXPORTED)
+        } else {
+            context.registerReceiver(receiver, IntentFilter(ACTION_DISMISS))
+            context.registerReceiver(receiver, IntentFilter(ACTION_EXIT))
+        }
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_warning)
             .setContentTitle("Hey $userName, you are now watching unproductive/entertainment content")
@@ -97,24 +74,8 @@ object DistractionNotificationHelper {
             .setColor(Color.YELLOW)
             .addAction(R.drawable.ic_warning, "Dismiss (+1 min)", pendingDismiss)
             .addAction(R.drawable.ic_warning, "Exit", pendingExit)
-        val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        manager.notify(NOTIFICATION_ID, builder.build())
-    }
-
-    private fun createChannel(context: Context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                CHANNEL_ID,
-                CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_HIGH
-            )
-            channel.description = "Warnings for distracting app usage"
-            channel.enableLights(true)
-            channel.lightColor = Color.YELLOW
-            channel.enableVibration(true)
-            val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            manager.createNotificationChannel(channel)
-        }
+        // Remove all system notification logic for distraction alerts/blocks.
+        // Only use in-app overlays for all distraction events.
     }
 
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
@@ -126,12 +87,16 @@ object DistractionNotificationHelper {
                     dismissListener?.invoke()
                     dismissListener = null
                     unregister(context)
-                    val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-                    manager.cancel(NOTIFICATION_ID)
+                    // Remove all system notification logic for distraction alerts/blocks.
+                    // Only use in-app overlays for all distraction events.
                 }
             }
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         context.registerReceiver(receiver, IntentFilter(ACTION_DISMISS), Context.RECEIVER_NOT_EXPORTED)
+        } else {
+            context.registerReceiver(receiver, IntentFilter(ACTION_DISMISS))
+        }
         dismissReceiver = receiver
         registered = true
     }
@@ -145,8 +110,8 @@ object DistractionNotificationHelper {
     }
 
     fun clearNotification(context: Context) {
-        val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        manager.cancel(NOTIFICATION_ID)
+        // Remove all system notification logic for distraction alerts/blocks.
+        // Only use in-app overlays for all distraction events.
         unregister(context)
     }
 } 

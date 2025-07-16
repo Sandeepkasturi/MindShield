@@ -44,7 +44,14 @@ class DistractionNotificationManager @Inject constructor(
             ACTION_EXIT -> {
                 NotificationManagerCompat.from(context).cancel(NOTIFICATION_ID)
                 // Optionally, trigger overlay block here
-                DistractionBlockOverlay.show(context, "Unproductive Session", 30_000L) {}
+                DistractionBlockOverlay.show(
+                    context,
+                    "Unproductive Session",
+                    30_000L,
+                    onDismiss = {
+                        // Dismiss logic if any
+                    }
+                )
             }
         }
     }
@@ -64,7 +71,12 @@ class DistractionNotificationManager @Inject constructor(
             .addAction(R.drawable.ic_warning, "Dismiss", dismissIntent)
             .addAction(R.drawable.ic_warning, "Exit & Block", exitIntent)
             .setAutoCancel(true)
+        try {
         NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, builder.build())
+        } catch (e: SecurityException) {
+            // Handle permission denied gracefully
+            android.util.Log.w("DistractionNotificationManager", "Notification permission denied: ${e.message}")
+        }
     }
 
     private fun createNotificationChannel() {
