@@ -33,6 +33,7 @@ import com.example.mindshield.ui.theme.MindShieldTheme
 import com.example.mindshield.ui.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.lifecycle.lifecycleScope
+import javax.inject.Inject
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import android.content.SharedPreferences
@@ -45,11 +46,16 @@ import android.os.PowerManager
 import android.provider.Settings
 import android.os.Build
 import android.content.Context
+import com.example.mindshield.util.AppBlockingManager
+import com.example.mindshield.util.AppBlockingHelper
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var prefs: SharedPreferences
+    
+    // @Inject
+    // lateinit var appBlockingManager: AppBlockingManager
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -157,6 +163,9 @@ class MainActivity : ComponentActivity() {
             android.util.Log.d("MainActivity", "All permissions granted, starting service")
             homeViewModel.onPermissionsGranted()
             startDistractionMonitorService()
+            
+            // Initialize app blocking system
+            // initializeAppBlocking()
         } else {
             android.util.Log.d("MainActivity", "Permissions not granted yet")
         }
@@ -271,6 +280,72 @@ class MainActivity : ComponentActivity() {
             .setNegativeButton("Cancel", null)
             .show()
     }
+    
+    /**
+     * Initialize the app blocking system
+     */
+    /*
+    private fun initializeAppBlocking() {
+        // Check if app blocking is ready
+        if (!appBlockingManager.isReady()) {
+            android.util.Log.w("MainActivity", "App blocking not ready - requesting permissions")
+            appBlockingManager.requestPermissions()
+            return
+        }
+        
+        android.util.Log.d("MainActivity", "Initializing app blocking system")
+        appBlockingManager.initialize()
+        
+        // Example: Add some popular apps to monitor (you can customize this)
+        setupExampleAppTimers()
+    }
+    
+    /**
+     * Setup example app timers for demonstration
+     */
+    private fun setupExampleAppTimers() {
+        // Example: Add Instagram with 30-minute daily limit
+        appBlockingManager.addAppTimer(
+            packageName = "com.instagram.android",
+            appName = "Instagram",
+            dailyLimitMinutes = 30
+        )
+        
+        // Example: Add TikTok with 20-minute daily limit
+        appBlockingManager.addAppTimer(
+            packageName = "com.zhiliaoapp.musically",
+            appName = "TikTok",
+            dailyLimitMinutes = 20
+        )
+        
+        // Example: Add YouTube with 60-minute daily limit
+        appBlockingManager.addAppTimer(
+            packageName = "com.google.android.youtube",
+            appName = "YouTube",
+            dailyLimitMinutes = 60
+        )
+        
+        android.util.Log.d("MainActivity", "Example app timers setup complete")
+    }
+    
+    /**
+     * Example method to demonstrate app blocking functionality
+     */
+    private fun demonstrateAppBlocking() {
+        // Get current usage for Instagram
+        val instagramUsage = appBlockingManager.getAppUsage("com.instagram.android")
+        android.util.Log.d("MainActivity", "Instagram usage: ${instagramUsage / 1000} seconds")
+        
+        // Force check if Instagram should be blocked
+        appBlockingManager.forceCheckApp("com.instagram.android")
+        
+        // Update Instagram limit to 15 minutes
+        appBlockingManager.updateAppLimit("com.instagram.android", 15)
+        
+        // Disable monitoring for TikTok
+        appBlockingManager.setAppMonitoringEnabled("com.zhiliaoapp.musically", false)
+    }
+    */
 }
 
 @Composable

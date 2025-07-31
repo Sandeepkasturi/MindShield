@@ -3,4 +3,5 @@
     <string name="accessibility_service_description">MindShield uses accessibility services to monitor app usage and detect distractions to help you stay focused.</string>
     <string name="content_aware_accessibility_description">MindShield uses accessibility services to analyze content in YouTube and Chrome to detect entertainment content and help you stay productive.</string>
     <string name="content_aware_service_description">MindShield uses accessibility services to intelligently analyze content in YouTube and browsers to distinguish between productive and distracting content, helping you stay focused.</string>
+    <string name="app_blocking_accessibility_description">MindShield uses accessibility services to monitor app usage and enforce time limits to help you manage your screen time effectively.</string>
 </resources>

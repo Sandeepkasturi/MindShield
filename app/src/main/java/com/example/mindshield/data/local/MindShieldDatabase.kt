@@ -12,16 +12,16 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(
-    entities = [AppInfoEntity::class],
+    entities = [AppInfoEntity::class, AppUsage::class, DistractionEvent::class, AppTimer::class],
     version = 3, // Incremented version from 2 to 3
     exportSchema = false
 )
 abstract class MindShieldDatabase : RoomDatabase() {
     
-    // abstract fun appUsageDao(): AppUsageDao
-    // abstract fun distractionEventDao(): DistractionEventDao
+    abstract fun appUsageDao(): AppUsageDao
+    abstract fun distractionEventDao(): DistractionEventDao
     abstract fun appInfoDao(): AppInfoDao
-    // abstract fun appTimerDao(): AppTimerDao
+    abstract fun appTimerDao(): AppTimerDao
     
     companion object {
         @Volatile

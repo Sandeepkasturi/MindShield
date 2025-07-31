@@ -11,6 +11,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.example.mindshield.R
 import com.example.mindshield.data.repository.AppTimerRepository
 import com.example.mindshield.util.DistractionBlockOverlay
+import com.example.mindshield.util.AppUsageTracker
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -53,21 +54,26 @@ class AppTimerService @Inject constructor(
         scope.launch {
             val timer = appTimerRepository.getAppTimer(packageName)
             val isBlocked = appTimerRepository.isAppBlocked(packageName)
+            
             if (isBlocked) {
-                showTomatoLimitOverlay(packageName)
-                // Immediately send to home to prevent app usage
-                goToHome()
+                // App is blocked - let the AccessibilityService handle the blocking
+                // We just log it here, the actual blocking happens in AppBlockingService
+                android.util.Log.d("AppTimerService", "App $packageName is blocked - blocking will be handled by AccessibilityService")
             } else {
                 activeApps.add(packageName)
                 appStartTimes[packageName] = System.currentTimeMillis()
-                // Check for interval (halfway) overlay
+                
+                // Sync with UsageStatsManager for accurate tracking
+                syncUsageWithSystem(packageName)
+                
+                // Check for interval (halfway) warning - show gentle notification instead of overlay
                 if (timer != null && timer.isEnabled && timer.dailyLimitMinutes > 1 && !intervalOverlayShown.contains(packageName)) {
                     val halfTimeMs = (timer.dailyLimitMinutes * 60_000L) / 2
                     launch {
                         delay(halfTimeMs)
-                        // Check if app is still active and overlay not shown
+                        // Check if app is still active and warning not shown
                         if (activeApps.contains(packageName) && !intervalOverlayShown.contains(packageName)) {
-                            showIntervalOverlay(packageName, timer.appName, timer.dailyLimitMinutes)
+                            showGentleWarning(packageName, timer.appName, timer.dailyLimitMinutes)
                             intervalOverlayShown.add(packageName)
                         }
                     }
@@ -89,32 +95,15 @@ class AppTimerService @Inject constructor(
             }
             activeApps.remove(packageName)
             intervalOverlayShown.remove(packageName)
+            
+            // Sync with UsageStatsManager for accurate tracking
+            syncUsageWithSystem(packageName)
         }
     }
     
-    private suspend fun showTimeLimitNotification(packageName: String) {
-        val appName = getAppName(packageName)
-        // --- Removed system notification logic ---
-        // Show overlay only (tomato background)
-        DistractionBlockOverlay.show(
-            context,
-            appName,
-            5000L, // 5 seconds
-            onDismiss = {
-                // After overlay dismisses, go to home
-                goToHome()
-            },
-            message = "You used your limit for $appName today",
-            color = 0xFFFF6347.toInt() // Tomato red
-        )
-    }
+
     
-    private fun goToHome() {
-        val homeIntent = Intent(Intent.ACTION_MAIN)
-        homeIntent.addCategory(Intent.CATEGORY_HOME)
-        homeIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        context.startActivity(homeIntent)
-    }
+
     
     private fun getAppName(packageName: String): String {
         return try {
@@ -140,50 +129,100 @@ class AppTimerService @Inject constructor(
         }
     }
     
-    private fun showIntervalOverlay(packageName: String, appName: String, dailyLimitMinutes: Int) {
-        val message = "You used your half time on the $appName. Take a break!"
-        // Show tomato overlay (instead of orange)
-        DistractionBlockOverlay.show(
-            context,
-            appName,
-            5000L,
-            onDismiss = {},
-            message = message,
-            color = 0xFFFF6347.toInt() // Tomato red
-        )
-    }
-
-    private suspend fun showTomatoLimitOverlay(packageName: String) {
-        val appName = getAppName(packageName)
-        val message = "You used your limit for $appName today"
-        // Show tomato overlay (red color)
-        withContext(Dispatchers.Main) {
-            DistractionBlockOverlay.show(
-                context,
-                appName,
-                5000L, // 5 seconds
-                onDismiss = {
-                    // After overlay, always go to home
-                    goToHome()
-                },
-                message = message,
-                color = 0xFFFF6347.toInt() // Tomato red
-            )
+    /**
+     * Show a gentle warning notification instead of intrusive overlay
+     */
+    private fun showGentleWarning(packageName: String, appName: String, dailyLimitMinutes: Int) {
+        val message = "You've used half your daily limit for $appName. Consider taking a break!"
+        
+        // Show a gentle notification instead of overlay
+        try {
+            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val channelId = "app_timer_warnings"
+            
+            // Create notification channel if needed
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val channel = NotificationChannel(
+                    channelId,
+                    "App Timer Warnings",
+                    NotificationManager.IMPORTANCE_LOW
+                ).apply {
+                    description = "Gentle reminders about app usage limits"
+                }
+                notificationManager.createNotificationChannel(channel)
+            }
+            
+            val notification = NotificationCompat.Builder(context, channelId)
+                .setContentTitle("MindShield Reminder")
+                .setContentText(message)
+                .setSmallIcon(R.drawable.ic_warning)
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setAutoCancel(true)
+                .build()
+            
+            notificationManager.notify(packageName.hashCode(), notification)
+            
+        } catch (e: Exception) {
+            android.util.Log.e("AppTimerService", "Error showing gentle warning", e)
         }
     }
     
-    private suspend fun showTomatoHalfTimeOverlay(packageName: String, appName: String) {
-        val message = "You used your half time on $appName. Consider take break"
-        withContext(Dispatchers.Main) {
-            DistractionBlockOverlay.show(
-                context,
-                appName,
-                5000L, // 5 seconds
-                onDismiss = {},
-                message = message,
-                color = 0xFFFF6347.toInt() // Tomato red
-            )
+    /**
+     * Sync app usage with system UsageStatsManager for accurate tracking
+     */
+    private suspend fun syncUsageWithSystem(packageName: String) {
+        try {
+            val systemUsageTime = AppUsageTracker.getAppUsageTime(context, packageName)
+            val timer = appTimerRepository.getAppTimer(packageName)
+            
+            if (timer != null) {
+                val systemUsageSeconds = (systemUsageTime / 1000).toInt()
+                val currentUsageSeconds = timer.currentUsageSeconds ?: 0
+                
+                // If there's a significant difference, update our tracking
+                if (kotlin.math.abs(systemUsageSeconds - currentUsageSeconds) > 30) { // 30 second threshold
+                    android.util.Log.d("AppTimerService", "Syncing usage for $packageName: system=$systemUsageSeconds, local=$currentUsageSeconds")
+                    
+                    // Reset to system usage and add any additional time from current session
+                    val startTime = appStartTimes[packageName]
+                    val additionalSeconds = if (startTime != null) {
+                        ((System.currentTimeMillis() - startTime) / 1000).toInt()
+                    } else 0
+                    
+                    val totalUsageSeconds = systemUsageSeconds + additionalSeconds
+                    appTimerRepository.resetUsageToSeconds(packageName, totalUsageSeconds)
+                }
+            }
+        } catch (e: Exception) {
+            android.util.Log.e("AppTimerService", "Error syncing usage with system for $packageName", e)
         }
+    }
+    
+    /**
+     * Get accurate app usage time from system
+     */
+    fun getAccurateAppUsage(packageName: String): Long {
+        return AppUsageTracker.getAppUsageTime(context, packageName)
+    }
+    
+    /**
+     * Check if app should be blocked based on system usage
+     */
+    suspend fun checkAndBlockApp(packageName: String): Boolean {
+        val timer = appTimerRepository.getAppTimer(packageName) ?: return false
+        if (!timer.isEnabled) return false
+        
+        // Get accurate usage from system
+        val systemUsageTime = AppUsageTracker.getAppUsageTime(context, packageName)
+        val systemUsageSeconds = (systemUsageTime / 1000).toInt()
+        val limitSeconds = timer.dailyLimitMinutes * 60
+        
+        if (systemUsageSeconds >= limitSeconds) {
+            android.util.Log.d("AppTimerService", "App $packageName should be blocked: usage=$systemUsageSeconds, limit=$limitSeconds")
+            return true
+        }
+        
+        return false
     }
     
     fun stop() {

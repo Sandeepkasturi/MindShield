@@ -30,18 +30,19 @@ class MindShieldApplication : Application() {
         val freeMemory = runtime.freeMemory() / (1024 * 1024) // MB
         
         Log.d(TAG, "Device Memory - Max: ${maxMemory}MB, Total: ${totalMemory}MB, Free: ${freeMemory}MB")
-        Log.d(TAG, "Is Low-End Device: ${PerformanceOptimizer.isLowEndDevice(this)}")
+        // Temporarily disabled to avoid potential circular dependencies
+        // Log.d(TAG, "Is Low-End Device: ${PerformanceOptimizer.isLowEndDevice(this)}")
         
-        // Start memory monitoring
-        MemoryManager.startMemoryMonitoring(this)
+        // Start memory monitoring - temporarily disabled
+        // MemoryManager.startMemoryMonitoring(this)
     }
     
     override fun onLowMemory() {
         super.onLowMemory()
         Log.w(TAG, "Low memory warning received")
         
-        // Force immediate cleanup
-        MemoryManager.forceCleanup()
+        // Force immediate cleanup - temporarily disabled
+        // MemoryManager.forceCleanup()
     }
     
     override fun onTrimMemory(level: Int) {
@@ -51,16 +52,16 @@ class MindShieldApplication : Application() {
         when (level) {
             android.content.ComponentCallbacks2.TRIM_MEMORY_RUNNING_CRITICAL,
             android.content.ComponentCallbacks2.TRIM_MEMORY_RUNNING_LOW -> {
-                // Force cleanup on memory pressure
-                MemoryManager.forceCleanup()
+                // Force cleanup on memory pressure - temporarily disabled
+                // MemoryManager.forceCleanup()
             }
         }
     }
     
     override fun onTerminate() {
         super.onTerminate()
-        // Stop memory monitoring
-        MemoryManager.stopMemoryMonitoring()
+        // Stop memory monitoring - temporarily disabled
+        // MemoryManager.stopMemoryMonitoring()
         Log.d(TAG, "MindShield Application terminated")
     }
 } 

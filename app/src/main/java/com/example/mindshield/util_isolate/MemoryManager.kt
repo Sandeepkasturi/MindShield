@@ -67,8 +67,8 @@ object MemoryManager {
      * Perform cleanup when memory usage is high
      */
     private fun performWarningCleanup() {
-        // Clean up performance optimizer
-        PerformanceOptimizer.cleanup()
+        // Clean up performance optimizer - temporarily disabled to avoid circular dependency
+        // PerformanceOptimizer.cleanup()
         
         // Force garbage collection
         System.gc()
@@ -80,8 +80,8 @@ object MemoryManager {
      * Perform aggressive cleanup when memory usage is critical
      */
     private fun performCriticalCleanup() {
-        // Clean up performance optimizer
-        PerformanceOptimizer.cleanup()
+        // Clean up performance optimizer - temporarily disabled to avoid circular dependency
+        // PerformanceOptimizer.cleanup()
         
         // Force multiple garbage collections
         repeat(3) {

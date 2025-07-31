@@ -1,9 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp") // Enable KSP plugin
+    // id("com.google.devtools.ksp") // TEMPORARILY DISABLED: KSP causing StackOverflowError
     id("dagger.hilt.android.plugin")
-    id("org.jetbrains.kotlin.kapt") // Re-enable KAPT for Hilt
+    id("org.jetbrains.kotlin.kapt") // TEMPORARILY ENABLED: Using KAPT instead of KSP
 }
 
 android {
@@ -38,6 +38,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
+        freeCompilerArgs += listOf(
+            "-Xjvm-default=all",
+            "-Xuse-k2"
+        )
     }
     buildFeatures {
         compose = true
@@ -82,16 +86,11 @@ dependencies {
     
     // Hilt
     implementation("com.google.dagger:hilt-android:2.51.1")
-    kapt("com.google.dagger:hilt-compiler:2.51.1") // Use KAPT for Hilt (KSP is unstable for some projects)
-    // ksp("com.google.dagger:hilt-compiler:2.51.1") // Commented out KSP for Hilt
-    // kapt("com.google.dagger:hilt-compiler:2.51.1") // Remove KAPT for Hilt
-    // ksp("com.google.dagger:hilt-android-compiler:2.48.1")
-    // implementation("androidx.hilt:hilt-navigation-compose:1.1.0") // already present
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1") // TEMPORARILY USING KAPT: KSP causing StackOverflowError
     
     // Room
     implementation("androidx.room:room-runtime:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1") // Use KAPT for Room (KSP causes StackOverflowError)
-    // ksp("androidx.room:room-compiler:2.6.1") // Disabled KSP for Room
+    kapt("androidx.room:room-compiler:2.6.1") // TEMPORARILY USING KAPT: KSP causing StackOverflowError
     implementation("androidx.room:room-ktx:2.6.1")
     
     // DataStore

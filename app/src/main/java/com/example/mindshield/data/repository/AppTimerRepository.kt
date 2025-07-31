@@ -34,6 +34,9 @@ class AppTimerRepository @Inject constructor(
     suspend fun resetUsage(packageName: String, resetDate: Long) = 
         appTimerDao.resetUsage(packageName, resetDate)
     
+    suspend fun resetUsageToSeconds(packageName: String, usageSeconds: Int) = 
+        appTimerDao.resetUsageToSeconds(packageName, usageSeconds)
+    
     suspend fun checkAndResetDailyUsage() {
         val enabledTimers = getEnabledAppTimers()
         val currentDate = System.currentTimeMillis()

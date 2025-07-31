@@ -36,4 +36,7 @@ interface AppTimerDao {
     
     @Query("UPDATE app_timers SET currentUsageMinutes = 0, currentUsageSeconds = 0, lastResetDate = :resetDate WHERE packageName = :packageName")
     suspend fun resetUsage(packageName: String, resetDate: Long)
+    
+    @Query("UPDATE app_timers SET currentUsageSeconds = :usageSeconds, currentUsageMinutes = :usageSeconds / 60 WHERE packageName = :packageName")
+    suspend fun resetUsageToSeconds(packageName: String, usageSeconds: Int)
 } 

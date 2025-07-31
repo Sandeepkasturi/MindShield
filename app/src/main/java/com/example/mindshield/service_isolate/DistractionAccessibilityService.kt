@@ -9,6 +9,8 @@ import com.example.mindshield.util.DistractionSessionManager
 import com.example.mindshield.util.DistractionAppRepository
 import com.example.mindshield.util.DistractionNotificationHelper
 import com.example.mindshield.util.DistractionBlockOverlay
+import com.example.mindshield.util.AppUsageTracker
+import com.example.mindshield.service.AppTimerService
 
 @AndroidEntryPoint
 class DistractionAccessibilityService : AccessibilityService() {
@@ -21,14 +23,19 @@ class DistractionAccessibilityService : AccessibilityService() {
                         val packageName = accessibilityEvent.packageName?.toString()
                         if (packageName != null) {
                             try {
+                                // Handle distraction detection
                                 val isDistracting = DistractionAppRepository.isDistractingApp(this, packageName)
                                 if (isDistracting) {
                                     DistractionSessionManager.onAppOpened(this, packageName)
                                 } else {
                                     DistractionSessionManager.resetSession()
                                 }
+                                
+                                // Handle app timer monitoring
+                                handleAppTimerMonitoring(packageName)
+                                
                             } catch (e: Exception) {
-                                android.util.Log.e("DistractionAccessibilityService", "Error in isDistractingApp/onAppOpened: ", e)
+                                android.util.Log.e("DistractionAccessibilityService", "Error in accessibility event handling: ", e)
                             }
                         }
                     }
@@ -102,14 +109,20 @@ class DistractionAccessibilityService : AccessibilityService() {
                 // Optionally log or handle notification dismissal
             },
             onOverlayFinish = { packageName ->
-                // Send user to home screen
+                // Send user to home screen using AccessibilityService global action
                 try {
-                    val intent = Intent(Intent.ACTION_MAIN)
-                    intent.addCategory(Intent.CATEGORY_HOME)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(intent)
+                    performGlobalAction(GLOBAL_ACTION_HOME)
                 } catch (e: Exception) {
                     android.util.Log.e("DistractionAccessibilityService", "Error in onOverlayFinish: ", e)
+                    // Fallback to Intent approach
+                    try {
+                        val intent = Intent(Intent.ACTION_MAIN)
+                        intent.addCategory(Intent.CATEGORY_HOME)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(intent)
+                    } catch (fallbackException: Exception) {
+                        android.util.Log.e("DistractionAccessibilityService", "Fallback method also failed", fallbackException)
+                    }
                 }
             }
         )
@@ -123,6 +136,35 @@ class DistractionAccessibilityService : AccessibilityService() {
         ForegroundService.stop(this)
     }
 
+    /**
+     * Handle app timer monitoring for usage limits
+     */
+    private fun handleAppTimerMonitoring(packageName: String) {
+        try {
+            // Get the current active app from system
+            val currentActiveApp = AppUsageTracker.getCurrentActiveApp(this)
+            
+            if (currentActiveApp == packageName) {
+                // App is being opened/activated
+                AppTimerService.onAppStarted(packageName)
+            } else {
+                // App is being closed/deactivated
+                AppTimerService.onAppStopped(packageName)
+            }
+            
+            // Check if app should be blocked based on usage
+            kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.IO).launch {
+                val isBlocked = AppTimerService.checkAndBlockApp(packageName)
+                if (isBlocked) {
+                    android.util.Log.d("DistractionAccessibilityService", "App $packageName blocked due to usage limit")
+                }
+            }
+            
+        } catch (e: Exception) {
+            android.util.Log.e("DistractionAccessibilityService", "Error in app timer monitoring: ", e)
+        }
+    }
+    
     private fun notifyAppChange(packageName: String) {
         // No longer used; logic moved to onAccessibilityEvent
     }
