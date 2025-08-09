@@ -49,7 +49,16 @@ object ServiceModule {
 
     @Provides
     @Singleton
-    fun provideSettingsRepository(settingsDataStore: com.example.mindshield.data.local.SettingsDataStore): com.example.mindshield.data.repository.SettingsRepository {
-        return com.example.mindshield.data.repository.SettingsRepository(settingsDataStore)
+    fun provideSecureSettings(@ApplicationContext context: Context): com.example.mindshield.data.local.SecureSettings {
+        return com.example.mindshield.data.local.SecureSettings(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSettingsRepository(
+        settingsDataStore: com.example.mindshield.data.local.SettingsDataStore,
+        secureSettings: com.example.mindshield.data.local.SecureSettings
+    ): com.example.mindshield.data.repository.SettingsRepository {
+        return com.example.mindshield.data.repository.SettingsRepository(settingsDataStore, secureSettings)
     }
 } 

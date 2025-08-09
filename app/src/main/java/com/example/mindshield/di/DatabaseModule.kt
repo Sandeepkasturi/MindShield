@@ -17,8 +17,11 @@ object DatabaseModule {
     
     @Provides
     @Singleton
-    fun provideMindShieldDatabase(@ApplicationContext context: Context): MindShieldDatabase {
-        return MindShieldDatabase.getDatabase(context)
+    fun provideMindShieldDatabase(
+        @ApplicationContext context: Context,
+        secureSettings: com.example.mindshield.data.local.SecureSettings
+    ): MindShieldDatabase {
+        return MindShieldDatabase.getDatabase(context, secureSettings)
     }
     
     @Provides

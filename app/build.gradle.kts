@@ -25,7 +25,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -92,9 +93,14 @@ dependencies {
     implementation("androidx.room:room-runtime:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1") // TEMPORARILY USING KAPT: KSP causing StackOverflowError
     implementation("androidx.room:room-ktx:2.6.1")
+    // SQLCipher for encrypted Room
+    implementation("net.zetetic:android-database-sqlcipher:4.5.4")
+    implementation("androidx.sqlite:sqlite:2.4.0")
     
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+    // Security Crypto for encrypted preferences
+    implementation("androidx.security:security-crypto:1.0.0")
     
     // WorkManager
     implementation("androidx.work:work-runtime-ktx:2.9.0")
