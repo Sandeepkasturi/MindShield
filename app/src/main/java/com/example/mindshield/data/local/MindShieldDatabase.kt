@@ -10,6 +10,8 @@ import com.example.mindshield.data.model.AppInfoEntity
 import com.example.mindshield.data.model.AppTimer
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 
 @Database(
     entities = [AppInfoEntity::class, AppUsage::class, DistractionEvent::class, AppTimer::class],
@@ -34,13 +36,18 @@ abstract class MindShieldDatabase : RoomDatabase() {
             }
         }
         
-        fun getDatabase(context: Context): MindShieldDatabase {
+        fun getDatabase(context: Context, secureSettings: SecureSettings): MindShieldDatabase {
             return INSTANCE ?: synchronized(this) {
+                // Ensure SQLCipher is loaded
+                SQLiteDatabase.loadLibs(context)
+                val passphrase: ByteArray = secureSettings.getOrCreateDbPassphrase()
+                val factory = SupportFactory(passphrase)
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     MindShieldDatabase::class.java,
                     "mindshield_database"
                 )
+                .openHelperFactory(factory)
                 .addMigrations(MIGRATION_2_3)
                 .build()
                 INSTANCE = instance

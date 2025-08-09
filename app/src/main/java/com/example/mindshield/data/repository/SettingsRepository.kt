@@ -8,7 +8,8 @@ import javax.inject.Singleton
 
 @Singleton
 class SettingsRepository @Inject constructor(
-    private val settingsDataStore: SettingsDataStore
+    private val settingsDataStore: SettingsDataStore,
+    private val secureSettings: com.example.mindshield.data.local.SecureSettings
 ) {
     
     val userName: Flow<String> = settingsDataStore.userName
@@ -33,10 +34,10 @@ class SettingsRepository @Inject constructor(
     // App timer settings
     val appTimerEnabled: Flow<Boolean> = settingsDataStore.appTimerEnabled
     
-    // Add Gemini API key support
-    val geminiApiKey: Flow<String> = settingsDataStore.geminiApiKey
+    // Gemini API key stored securely
+    val geminiApiKey: Flow<String> = secureSettings.geminiApiKeyFlow
     suspend fun setGeminiApiKey(key: String) {
-        settingsDataStore.setGeminiApiKey(key)
+        secureSettings.setGeminiApiKey(key)
     }
     
     suspend fun initializeDefaultsIfNeeded() {

@@ -179,15 +179,18 @@ fun SettingsScreen(
     var showApiKeyEdit by remember { mutableStateOf(false) }
     // Cache all apps on first composition
     val allApps = remember {
-        context.packageManager.getInstalledApplications(android.content.pm.PackageManager.GET_META_DATA)
-            .filter { context.packageManager.getLaunchIntentForPackage(it.packageName) != null }
-            .map {
-                val appName = context.packageManager.getApplicationLabel(it).toString()
-                val icon = try { context.packageManager.getApplicationIcon(it.packageName) } catch (e: Exception) { null }
+        val pm = context.packageManager
+        val intent = android.content.Intent(android.content.Intent.ACTION_MAIN, null).apply {
+            addCategory(android.content.Intent.CATEGORY_LAUNCHER)
+        }
+        pm.queryIntentActivities(intent, 0)
+            .map { resolveInfo ->
+                val appName = resolveInfo.loadLabel(pm).toString()
+                val packageName = resolveInfo.activityInfo.packageName
                 AppInfo(
-                    packageName = it.packageName,
+                    packageName = packageName,
                     appName = appName,
-                    isDistracting = uiState.distractingApps.any { d -> d.packageName == it.packageName && d.isDistracting }
+                    isDistracting = uiState.distractingApps.any { d -> d.packageName == packageName && d.isDistracting }
                 )
             }
             .sortedBy { it.appName.lowercase() }

@@ -38,3 +38,18 @@
 -keep class org.slf4j.Logger { *; }
 -keep class org.slf4j.Marker { *; }
 -keep class org.slf4j.MDC { *; }
+
+# Keep Hilt/Dagger generated code and annotations
+-keep class dagger.hilt.** { *; }
+-keep class dagger.** { *; }
+-dontwarn dagger.hilt.internal.**
+
+# Keep Room entities, daos, and database
+-keep class androidx.room.** { *; }
+-keep @androidx.room.Entity class * { *; }
+-keepclassmembers class * {
+    @androidx.room.* <methods>;
+}
+
+# Keep Kotlin data classes used for serialization (if any)
+-keep class com.example.mindshield.data.model_isolate.** { *; }

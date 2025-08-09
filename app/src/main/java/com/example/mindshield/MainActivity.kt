@@ -68,6 +68,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Prevent screenshots and screen recordings for added privacy
+        window.addFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE)
         prefs = getSharedPreferences("mindshield_prefs", MODE_PRIVATE)
         
         android.util.Log.d("MainActivity", "onCreate called")
